@@ -1,3 +1,4 @@
+-- mySql
 CREATE DATABASE home_work_3;
 
 CREATE TABLE developers(
