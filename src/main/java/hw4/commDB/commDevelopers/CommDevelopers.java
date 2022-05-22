@@ -1,36 +1,23 @@
-package hw4.commDB;
+package hw4.commDB.commDevelopers;
 
 import hw4.DatabaseConnector;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
+import hw4.commDB.Commands;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
-public class CommDevelopers implements Commands {
-    private final static String INSERT_DATA = "insert into developers (firstName, secondName, age, sex) values  (?,?,?,?)";
-    private final static String SELECT_DEV_BY_ID = "select * from developers where id =?";
-    private static final String SELECT_ALL_DEV = "select * from developers";
-    private static final String DELETE_DEV = "delete from developers where id = ?";
-    private static final String UPDATE_DEV = "update developers set firstName = ?,secondName= ?, age =?, sex=? where id = ?";
+public class CommDevelopers extends Commands {
+    public static final String INSERT = "insert into developers (firstName, secondName, age, sex, salary) values  (?,?,?,?,?)";
+    public static final String SELECT = "select * from developers where id =?";
+    public static final String SELECT_ALL = "select * from developers";
+    public static final String DELETE = "delete from developers where id = ?";
+    public static final String UPDATE = "update developers set firstName = ?,secondName= ?, age =?, sex=?, salary=? where id = ?";
 
-    private final PreparedStatement insertSt;
-    private final PreparedStatement selectSt;
-    private final PreparedStatement selectAllSt;
-    private final PreparedStatement deleteSt;
-    private final PreparedStatement updateSt;
-
-    public CommDevelopers(DatabaseConnector databaseConnector) throws SQLException {
-        Connection connection = databaseConnector.getConnection();
-                insertSt = connection.prepareStatement(INSERT_DATA);
-                selectSt = connection.prepareStatement(SELECT_DEV_BY_ID);
-                selectAllSt = connection.prepareStatement(SELECT_ALL_DEV);
-                deleteSt = connection.prepareStatement(DELETE_DEV);
-                updateSt = connection.prepareStatement(UPDATE_DEV);
+    public CommDevelopers(DatabaseConnector databaseConnector, String insert, String select, String selectAll, String delete, String update) throws SQLException {
+        super(databaseConnector, insert, select, selectAll, delete, update);
     }
 
-   @Override
+    @Override
     public boolean insertData(Object object) {
        Developer dev = (Developer) object;
        try {
@@ -38,14 +25,13 @@ public class CommDevelopers implements Commands {
            insertSt.setString(2,dev.getSecondName());
            insertSt.setInt(3,dev.getAge());
            insertSt.setString(4, dev.getSex());
+           insertSt.setInt(5,dev.getSalary());
 
            return insertSt.executeUpdate()==1;
        } catch (SQLException e) {
            e.printStackTrace();
        }
     return false;
-
-
     }
 
     @Override
@@ -62,52 +48,26 @@ public class CommDevelopers implements Commands {
             return new Developer(resultSet.getString("firstName"),
                     resultSet.getString("secondName"),
                     resultSet.getInt("age"),
-                    resultSet.getString("sex")); // to fix String/enum convert
+                    resultSet.getString("sex"),
+                    resultSet.getInt("salary"));
+            // TODO to fix String enum convert
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return Developer.INCORRECT_QUERY;
     }
 
     @Override
-    public List<Object> selectAllData() {
-        List <Object> developers = new ArrayList<>();
-
-        try (ResultSet resultSet = selectAllSt.executeQuery()){
-            while(resultSet.next()){
-                developers.add(new Developer(resultSet.getString("firstName"),
-                        resultSet.getString("secondName"),
-                        resultSet.getInt("age"),
-                        resultSet.getString("sex")));
-            }
-            return developers;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    @Override
-    public boolean delete(int id) {
-        try {
-            deleteSt.setLong(1,id);
-            return deleteSt.executeUpdate() == 1;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
-    @Override
-    public boolean update(int id, Object object) {
+    public boolean updateData(int id, Object object) {
         Developer dev = (Developer) object;
-        if(selectData(id)!=null){
+        if(!selectData(id).equals(Developer.INCORRECT_QUERY)){
             try {
                 updateSt.setString(1, dev.getFirstName());
                 updateSt.setString(2, dev.getSecondName());
                 updateSt.setInt(3, dev.getAge());
-                updateSt.setString(4, String.valueOf(dev.getSex()));
-                updateSt.setInt(5, id);
+                updateSt.setString(4, dev.getSex());
+                updateSt.setInt(5,dev.getSalary());
+                updateSt.setInt(6, id);
 
                 return updateSt.executeUpdate() == 1;
             } catch (SQLException e) {
