@@ -2,6 +2,8 @@ package hw4;
 
 import hw4.commDB.Commands;
 import hw4.commDB.OperationOnDB;
+import hw4.commDB.commCompanies.CommCompanies;
+import hw4.commDB.commCompanies.Company;
 import hw4.commDB.commDevelopers.CommDevelopers;
 import hw4.commDB.commDevelopers.Developer;
 import hw4.commDB.commProjectDeveloper.CommProjectDeveloper;
@@ -61,6 +63,16 @@ public class App {
 
         //System.out.println("commPD.selectAllData(\"id_pr_dev\") = " + commPD.selectAllData("id_pr_dev"));
 
+
+        // -- All commands on Companies table
+        CommCompanies commCompanies = new CommCompanies(databaseConnector,
+                CommCompanies.INSERT,CommCompanies.SELECT,CommCompanies.SELECT_ALL,CommCompanies.DELETE,CommCompanies.UPDATE);
+
+        //System.out.println("commCompanies.insertData(new Company(\"ZF\", \"Lagenhagen\")) = " + commCompanies.insertData(new Company("ZF", "Lagenhagen")));
+        //System.out.println("commCompanies.updateData(4,new Company(\"ZF DE\", \"Hanover\")) = " + commCompanies.updateData(4, new Company("ZF DE", "Hanover")));
+        //System.out.println("commCompanies.selectData(4) = " + commCompanies.selectData(4));
+        //System.out.println("commCompanies.delete(4) = " + commCompanies.delete(4));
+        //System.out.println("commCompanies.selectAllData(\"id_company\") = " + commCompanies.selectAllData("id_company"));
 
         // -- Here is sum od salary of all dev specific project
         CommProjectDeveloper commPD = new CommProjectDeveloper(databaseConnector,

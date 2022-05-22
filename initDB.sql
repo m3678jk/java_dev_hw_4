@@ -43,14 +43,14 @@ CREATE TABLE project_developer (
 CREATE TABLE companies(
 id_company bigint NOT NULL AUTO_INCREMENT,
 name_of_company varchar(50) NOT NULL,
-adress varchar(100),
+address varchar(100),
 primary key (id_company)
 );
 
 CREATE TABLE customers(
 id_customer bigint NOT NULL AUTO_INCREMENT,
 name_of_customer varchar(50) NOT NULL,
-adress varchar(100),
+address varchar(100),
 primary key (id_customer)
 );
 
