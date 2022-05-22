@@ -4,6 +4,8 @@ import hw4.commDB.Commands;
 import hw4.commDB.OperationOnDB;
 import hw4.commDB.commCompanies.CommCompanies;
 import hw4.commDB.commCompanies.Company;
+import hw4.commDB.commCustomers.CommCustomers;
+import hw4.commDB.commCustomers.Customer;
 import hw4.commDB.commDevelopers.CommDevelopers;
 import hw4.commDB.commDevelopers.Developer;
 import hw4.commDB.commProjectDeveloper.CommProjectDeveloper;
@@ -74,6 +76,17 @@ public class App {
         //System.out.println("commCompanies.delete(4) = " + commCompanies.delete(4));
         //System.out.println("commCompanies.selectAllData(\"id_company\") = " + commCompanies.selectAllData("id_company"));
 
+        // -- All commands on Customers table
+        CommCustomers commCustomers = new CommCustomers(databaseConnector,
+                CommCustomers.INSERT,CommCustomers.SELECT,CommCustomers.SELECT_ALL,CommCustomers.DELETE,CommCustomers.UPDATE);
+
+        //System.out.println("commCustomers.insertData(new Company(\"ZF\", \"Lagenhagen\")) = " + commCustomers.insertData(new Customer("ZF", "Lagenhagen")));
+        //System.out.println("commCustomers.updateData(5,new Company(\"ZF DE\", \"Hanover\")) = " + commCustomers.updateData(4, new Customer("ZF DE", "Hanover")));
+        //System.out.println("commCustomers.selectData(5) = " + commCustomers.selectData(5));
+        //System.out.println("commCustomers.delete(4) = " + commCustomers.delete(4));
+        //System.out.println("commCustomers.selectAllData(\"id_customer\") = " + commCustomers.selectAllData("id_customer"));
+
+
         // -- Here is sum od salary of all dev specific project
         CommProjectDeveloper commPD = new CommProjectDeveloper(databaseConnector,
                 CommProjectDeveloper.INSERT,CommProjectDeveloper.SELECT,
@@ -82,6 +95,7 @@ public class App {
 
         OperationOnDB op = new OperationOnDB(databaseConnector);
         op.getSumOfSalary(3);
+        System.out.println("op.getListOfDevelopers(2) = " + op.getListOfDevelopers(2));
 
     }
 }
