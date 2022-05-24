@@ -1,12 +1,12 @@
-package hw4.commDB.commCompanies;
+package hw4.commandsDB.commands;
 
 import hw4.DatabaseConnector;
-import hw4.commDB.Commands;
+import hw4.commandsDB.entity.Company;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class CommCompanies extends Commands {
+public class CommandsCompanies extends Commands {
     public static final String INSERT = "insert into companies (name_of_company, address) values  (?,?)";
     public static final String SELECT = "select * from companies where id_company =?";
     public static final String SELECT_ALL = "select * from companies";
@@ -14,7 +14,7 @@ public class CommCompanies extends Commands {
     public static final String UPDATE = "update companies set name_of_company = ?, address = ? where  id_company = ?";
 
 
-    public CommCompanies(DatabaseConnector databaseConnector, String insert, String select, String selectAll, String delete, String update) throws SQLException {
+    public CommandsCompanies(DatabaseConnector databaseConnector, String insert, String select, String selectAll, String delete, String update) throws SQLException {
         super(databaseConnector, insert, select, selectAll, delete, update);
     }
 

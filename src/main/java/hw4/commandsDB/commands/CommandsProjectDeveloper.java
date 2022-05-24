@@ -1,18 +1,19 @@
-package hw4.commDB.commProjectDeveloper;
+package hw4.commandsDB.commands;
 
 import hw4.DatabaseConnector;
-import hw4.commDB.Commands;
+import hw4.commandsDB.entity.ProjectDeveloper;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class CommProjectDeveloper extends Commands {
+public class CommandsProjectDeveloper extends Commands {
     public static final String INSERT = "insert into project_developer (id_project,  id_developer) values  (?,?)";
     public static final String SELECT = "select * from project_developer where id_pr_dev =?";
     public static final String SELECT_ALL = "select * from project_developer";
     public static final String DELETE = "delete from project_developer where id_pr_dev = ?";
     public static final String UPDATE = "update project_developer set id_project = ?, id_developer = ? where  id_pr_dev = ?";
 
-    public CommProjectDeveloper(DatabaseConnector databaseConnector, String insert, String select, String selectAll, String delete, String update) throws SQLException {
+    public CommandsProjectDeveloper(DatabaseConnector databaseConnector, String insert, String select, String selectAll, String delete, String update) throws SQLException {
         super(databaseConnector, insert, select, selectAll, delete, update);
     }
 

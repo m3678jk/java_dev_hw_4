@@ -1,13 +1,13 @@
-package hw4.commDB.commCustomers;
+package hw4.commandsDB.commands;
 
 import hw4.DatabaseConnector;
-import hw4.commDB.Commands;
-import hw4.commDB.commCompanies.Company;
+import hw4.commandsDB.entity.Company;
+import hw4.commandsDB.entity.Customer;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class CommCustomers extends Commands {
+public class CommandsCustomers extends Commands {
     public static final String INSERT = "insert into customers (name_of_customer, address) values  (?,?)";
     public static final String SELECT = "select * from customers where id_customer =?";
     public static final String SELECT_ALL = "select * from customers";
@@ -15,7 +15,7 @@ public class CommCustomers extends Commands {
     public static final String UPDATE = "update customers set name_of_customer = ?, address = ? where  id_customer = ?";
 
 
-    public CommCustomers(DatabaseConnector databaseConnector, String insert, String select, String selectAll, String delete, String update) throws SQLException {
+    public CommandsCustomers(DatabaseConnector databaseConnector, String insert, String select, String selectAll, String delete, String update) throws SQLException {
         super(databaseConnector, insert, select, selectAll, delete, update);
     }
 

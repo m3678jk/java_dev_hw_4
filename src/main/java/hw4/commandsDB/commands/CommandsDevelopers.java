@@ -1,19 +1,21 @@
-package hw4.commDB.commDevelopers;
+package hw4.commandsDB.commands;
 
 import hw4.DatabaseConnector;
-import hw4.commDB.Commands;
+import hw4.commandsDB.entity.Developer;
+import hw4.commandsDB.entity.Sex;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Locale;
 
-public class CommDevelopers extends Commands {
+public class CommandsDevelopers extends Commands {
     public static final String INSERT = "insert into developers (firstName, secondName, age, sex, salary) values  (?,?,?,?,?)";
     public static final String SELECT = "select * from developers where id =?";
     public static final String SELECT_ALL = "select * from developers";
     public static final String DELETE = "delete from developers where id = ?";
     public static final String UPDATE = "update developers set firstName = ?,secondName= ?, age =?, sex=?, salary=? where id = ?";
 
-    public CommDevelopers(DatabaseConnector databaseConnector, String insert, String select, String selectAll, String delete, String update) throws SQLException {
+    public CommandsDevelopers(DatabaseConnector databaseConnector, String insert, String select, String selectAll, String delete, String update) throws SQLException {
         super(databaseConnector, insert, select, selectAll, delete, update);
     }
 
@@ -24,7 +26,7 @@ public class CommDevelopers extends Commands {
            insertSt.setString(1,dev.getFirstName());
            insertSt.setString(2,dev.getSecondName());
            insertSt.setInt(3,dev.getAge());
-           insertSt.setString(4, dev.getSex());
+           insertSt.setString(4, dev.getSex().name());
            insertSt.setInt(5,dev.getSalary());
 
            return insertSt.executeUpdate()==1;
@@ -48,9 +50,8 @@ public class CommDevelopers extends Commands {
             return new Developer(resultSet.getString("firstName"),
                     resultSet.getString("secondName"),
                     resultSet.getInt("age"),
-                    resultSet.getString("sex"),
+                    Sex.valueOf(resultSet.getString("sex").toUpperCase(Locale.ROOT)),
                     resultSet.getInt("salary"));
-            // TODO to fix String enum convert
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -65,7 +66,7 @@ public class CommDevelopers extends Commands {
                 updateSt.setString(1, dev.getFirstName());
                 updateSt.setString(2, dev.getSecondName());
                 updateSt.setInt(3, dev.getAge());
-                updateSt.setString(4, dev.getSex());
+                updateSt.setString(4, dev.getSex().name());
                 updateSt.setInt(5,dev.getSalary());
                 updateSt.setInt(6, id);
 

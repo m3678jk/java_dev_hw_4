@@ -1,21 +1,22 @@
-package hw4.commDB.commProjects;
+package hw4.commandsDB.commands;
 
 import hw4.DatabaseConnector;
-import hw4.commDB.Commands;
+import hw4.commandsDB.entity.Project;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
 
-public class CommProject extends Commands {
+public class CommandsProject extends Commands {
     public static final String INSERT= "insert into projects (name_of_project, description, start_date) values  (?,?,?)";
     public static final String SELECT = "select * from projects where id_project =?";
     public static final String SELECT_ALL = "select * from projects";
     public static final String DELETE = "delete from projects where id_project = ?";
     public static final String UPDATE = "update projects set name_of_project = ?, description= ?, start_date =? where id_project = ?";
 
-    public CommProject(DatabaseConnector databaseConnector,
-                       String insert, String select, String selectAll, String delete, String update) throws SQLException {
+    public CommandsProject(DatabaseConnector databaseConnector,
+                           String insert, String select, String selectAll, String delete, String update) throws SQLException {
         super(databaseConnector, insert, select, selectAll, delete, update);
     }
 

@@ -56,18 +56,20 @@ primary key (id_customer)
 
 
 CREATE TABLE customer_project (
+    id_cus_pr bigint NOT NULL AUTO_INCREMENT,
     id_customer bigint NOT NULL,
     id_project bigint NOT NULL,
-    primary key (id_customer, id_project),
+    primary key (id_cus_pr),
     FOREIGN KEY (id_project) REFERENCES projects(id_project),
     FOREIGN KEY(id_customer) REFERENCES customers(id_customer)
 );
 
 
 CREATE TABLE company_project (
+    id_com_pr bigint NOT NULL AUTO_INCREMENT,
     id_company bigint NOT NULL,
     id_project bigint NOT NULL,
-    primary key (id_company, id_project),
+    primary key (id_com_pr),
     FOREIGN KEY (id_company) REFERENCES companies(id_company),
     FOREIGN KEY (id_project) REFERENCES projects(id_project)
 );

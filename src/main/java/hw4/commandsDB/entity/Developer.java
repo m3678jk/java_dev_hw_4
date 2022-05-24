@@ -1,4 +1,4 @@
-package hw4.commDB.commDevelopers;
+package hw4.commandsDB.entity;
 
 
 import lombok.AllArgsConstructor;
@@ -9,10 +9,10 @@ public class Developer {
     private String firstName;
     private String secondName;
     private int age;
-    private String sex;
+    private Sex sex;
     private int salary;
 
-    public static final Developer INCORRECT_QUERY = new Developer("error", "error", 0, "unknown", 0);
+    public static final Developer INCORRECT_QUERY = new Developer("error", "error", 0, Sex.UNKNOWN, 0);
 
 
 }

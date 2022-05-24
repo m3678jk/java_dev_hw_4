@@ -1,6 +1,5 @@
-package hw4.commDB.commCustomers;
+package hw4.commandsDB.entity;
 
-import hw4.commDB.commCompanies.Company;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 

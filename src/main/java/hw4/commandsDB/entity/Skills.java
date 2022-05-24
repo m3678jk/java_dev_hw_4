@@ -1,4 +1,4 @@
-package hw4.commDB.commSkills;
+package hw4.commandsDB.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

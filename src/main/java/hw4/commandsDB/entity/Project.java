@@ -1,6 +1,5 @@
-package hw4.commDB.commProjects;
+package hw4.commandsDB.entity;
 
-import hw4.commDB.commSkills.Skills;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 

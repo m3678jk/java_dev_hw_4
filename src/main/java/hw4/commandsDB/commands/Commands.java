@@ -1,7 +1,6 @@
-package hw4.commDB;
+package hw4.commandsDB.commands;
 
 import hw4.DatabaseConnector;
-import hw4.commDB.commDevelopers.Developer;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,7 +11,6 @@ import java.util.Map;
 
 // insertData selectData and updateData methods should be overwritten in each class
 public abstract class Commands<V>{
-    protected V value;
     protected String insert;
     protected String select;
     protected String selectAll;
@@ -63,11 +61,13 @@ public abstract class Commands<V>{
 
 
     public boolean delete(int id) {
-        try {
-            deleteSt.setLong(1,id);
-            return deleteSt.executeUpdate() == 1;
-        } catch (SQLException e) {
-            e.printStackTrace();
+        if(!selectData(id).equals(null)) {
+            try {
+                deleteSt.setLong(1, id);
+                return deleteSt.executeUpdate() == 1;
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return false;
     }

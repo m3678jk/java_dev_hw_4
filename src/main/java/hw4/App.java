@@ -1,101 +1,97 @@
 package hw4;
 
-import hw4.commDB.Commands;
-import hw4.commDB.OperationOnDB;
-import hw4.commDB.commCompanies.CommCompanies;
-import hw4.commDB.commCompanies.Company;
-import hw4.commDB.commCustomers.CommCustomers;
-import hw4.commDB.commCustomers.Customer;
-import hw4.commDB.commDevelopers.CommDevelopers;
-import hw4.commDB.commDevelopers.Developer;
-import hw4.commDB.commProjectDeveloper.CommProjectDeveloper;
-import hw4.commDB.commProjects.CommProject;
-import hw4.commDB.commProjects.Project;
-import hw4.commDB.commSkills.CommSkills;
-import hw4.commDB.commSkills.Skills;
-
-import java.sql.Connection;
 import java.sql.SQLException;
-import java.time.LocalDate;
 
 public class App {
     public static void main(String[] args) throws SQLException {
-        DatabaseConnector databaseConnector = DatabaseConnector.getDatabaseConnector();
-        Connection connection = databaseConnector.getConnection();
+        ServiceDB service = new ServiceDB();
+
+        //-- All commands on developers table:
+//        System.out.println(service.getCommandsDevelopers().insertData(
+//                new Developer("name1", "secondName2", 30, Sex.MALE, 3000)));
+//        System.out.println(service.getCommandsDevelopers().selectData(6));
+//        System.out.println(service.getCommandsDevelopers().selectAllData("id"));
+//        System.out.println(service.getCommandsDevelopers().delete(7));
+//        System.out.println(service.getCommandsDevelopers().updateData(
+//                6, new Developer("ch2", "ch", 36, Sex.MALE, 4000)));
+//          System.out.println(service.getCommandsDevelopers().selectAllData("id"));
 
 
-        CommDevelopers commDevelopers = new CommDevelopers(databaseConnector,
-                CommDevelopers.INSERT, CommDevelopers.SELECT, CommDevelopers.SELECT_ALL, CommDevelopers.DELETE, CommDevelopers.UPDATE);
-        CommSkills commSkills = new CommSkills(databaseConnector,
-                CommSkills.INSERT,CommSkills.SELECT, CommSkills.SELECT_ALL, CommSkills.DELETE, CommSkills.UPDATE);
+//        //--All operation on skills table
+//        System.out.println(service.getCommandsSkills().insertData(
+//                new Skills(5, true, true, false, false, "middle")));
+//        System.out.println(service.getCommandsSkills().selectData(4));
+//        System.out.println(service.getCommandsSkills().selectAllData("id_skills"));
+//        System.out.println(service.getCommandsSkills().delete(5));
+//          System.out.println(service.getCommandsSkills().updateData(4,
+//               new Skills(4, true, true, true, false, "Middle")));
 
-        CommProject commProject = new CommProject(databaseConnector,
-                CommProject.INSERT, CommProject.SELECT, CommProject.SELECT_ALL, CommProject.DELETE, CommProject.UPDATE);
-
-
-        //--All operation on developers table
-        //System.out.println("commDevelopers.insertData(new Developer(\"name1\", \"secondName2\", 30, \"male\", 3000)) = " + commDevelopers.insertData(new Developer("name1", "secondName2", 30, "male", 3000)));
-        //System.out.println("commDevelopers.selectData(6) = " + commDevelopers.selectData(6));
-        //System.out.println("commDevelopers.selectAllData() = " + commDevelopers.selectAllData("id"));
-        //System.out.println("commDevelopers.delete(7) = " + commDevelopers.delete(6));
-        //System.out.println("commDevelopers.updateData(7,new Developer(\"name1\", \"secondName2\", 36, \"male\",4000)) = " + commDevelopers.update(8, new Developer("ch2", "ch", 36, "male")));
-        //System.out.println("commDevelopers.selectAllData() = " + commDevelopers.selectAllData());
-
-        //--All operation on skills table
-//        System.out.println("commSkills.insertData(new Skills(7,true, true, false, false, \"middle\")) = "
-//                       + commSkills.insertData(
-//                                new Skills(7, true, true, false, false, "middle")));
-//        System.out.println("commSkills.selectData(4) = " + commSkills.selectData(4));
-        //System.out.println("commSkills.selectAllData() = " + commSkills.selectAllData());
-//        System.out.println("commSkills.delete(7) = " + commSkills.delete(5));
-//        System.out.println("commSkills.delete(8) = " + commSkills.delete(8));
-//        System.out.println("commSkills.updateData(4, new Skills(4,true, true, true, false, \"Middle\")) = " +
-//                commSkills.update(4, new Skills(
-//                        4, true, true, true, false, "Middle")));
+//        -- All operation with Projects table
+//        System.out.println(service.getCommandsProject().selectAllData("id_project"));
+//        System.out.println(service.getCommandsProject().selectData(5));
+//        System.out.println(service.getCommandsProject().updateData(6,
+//               new Project("warehouse","testUpdate", LocalDate.parse("2021-07-07"))));
+//        System.out.println(service.getCommandsProject().delete(6));
+//        System.out.println(service.getCommandsProject().selectAllData("id_project"));
 
 
-        // -- All operation with Projects table
-//        System.out.println("commProject.selectAllData() = " + commProject.selectAllData("id_project"));
-//        System.out.println("commProject.selectData(6) = " + commProject.selectData(5));
-//        commProject.update(6,new Project("warehouse","testUpdate", LocalDate.parse("2021-07-07")));
-//       System.out.println("commProject.selectData(6) = " + commProject.selectData(6));
-//        //System.out.println("commProject.selectAllData() = " + commProject.selectAllData("id_project"));
-       // System.out.println("commProject.delete(6) = " + commProject.delete(6));
-       // System.out.println("commProject.selectAllData() = " + commProject.selectAllData("id_project"));
+//        // -- All commands on Companies table
+//
+//        System.out.println(service.getCommandsCompanies().insertData(new Company("ZF", "Lagenhagen")));
+//        System.out.println(service.getCommandsCompanies().updateData(5, new Company("ZF DE", "Hanover")));
+//        System.out.println(service.getCommandsCompanies().selectData(5));
+//        System.out.println(service.getCommandsCompanies().delete(5));
+//        System.out.println(service.getCommandsCompanies().selectAllData("id_company"));
+//
+//        -- All commands on Customers table
 
-        //System.out.println("commPD.selectAllData(\"id_pr_dev\") = " + commPD.selectAllData("id_pr_dev"));
+//        System.out.println(service.getCommandsCustomers().insertData(new Customer("ZF", "Lagenhagen")));
+//        System.out.println(service.getCommandsCustomers().updateData(4, new Customer("ZF DE", "Hanover")));
+//        System.out.println(service.getCommandsCustomers().selectData(1));
+//        System.out.println(service.getCommandsCustomers().delete(1));
+//        System.out.println(service.getCommandsCustomers().selectAllData("id_customer"));
+
+        //        -- All commands on CompanyProject table
+//        System.out.println(service.getCommandsCompanyProject().insertData(new CompanyProject(2, 4)));
+//        System.out.println(service.getCommandsCompanyProject().updateData(5,new CompanyProject(2, 1)));
+//        System.out.println(service.getCommandsCompanyProject().selectData(5));
+//        System.out.println(service.getCommandsCompanyProject().selectAllData("id_com_pr"));
+//        System.out.println(service.getCommandsCompanyProject().delete(5));
+
+        // -- All commands on CustomerProject table
+//        System.out.println(service.getCommandsCustomerProject().insertData(new CustomerProject(2, 4)));
+//        System.out.println(service.getCommandsCustomerProject().updateData(5,new CustomerProject(2, 1)));
+//        System.out.println(service.getCommandsCustomerProject().selectData(5));
+//        System.out.println(service.getCommandsCustomerProject().selectAllData("id_cus_pr"));//
+//        System.out.println(service.getCommandsCustomerProject().delete(5));
+
+        // -- All commands on ProjectDeveloper table
+//        System.out.println(service.getCommandsProjectDeveloper().insertData(new ProjectDeveloper(2, 6)));
+//        System.out.println(service.getCommandsProjectDeveloper().updateData(4,new ProjectDeveloper(1, 1)));
+//        System.out.println(service.getCommandsProjectDeveloper().selectData(5));
+//        System.out.println(service.getCommandsProjectDeveloper().selectAllData("id_pr_dev"));//
+//        System.out.println(service.getCommandsProjectDeveloper().delete(5));//
 
 
-        // -- All commands on Companies table
-        CommCompanies commCompanies = new CommCompanies(databaseConnector,
-                CommCompanies.INSERT,CommCompanies.SELECT,CommCompanies.SELECT_ALL,CommCompanies.DELETE,CommCompanies.UPDATE);
 
-        //System.out.println("commCompanies.insertData(new Company(\"ZF\", \"Lagenhagen\")) = " + commCompanies.insertData(new Company("ZF", "Lagenhagen")));
-        //System.out.println("commCompanies.updateData(4,new Company(\"ZF DE\", \"Hanover\")) = " + commCompanies.updateData(4, new Company("ZF DE", "Hanover")));
-        //System.out.println("commCompanies.selectData(4) = " + commCompanies.selectData(4));
-        //System.out.println("commCompanies.delete(4) = " + commCompanies.delete(4));
-        //System.out.println("commCompanies.selectAllData(\"id_company\") = " + commCompanies.selectAllData("id_company"));
+//      -- All nonCRUD commands
 
-        // -- All commands on Customers table
-        CommCustomers commCustomers = new CommCustomers(databaseConnector,
-                CommCustomers.INSERT,CommCustomers.SELECT,CommCustomers.SELECT_ALL,CommCustomers.DELETE,CommCustomers.UPDATE);
+        System.out.println("---\n");
+        System.out.println("Sum of salary:");
+        System.out.println(service.getOperationOnDB().getSumOfSalary(3));
+        System.out.println("---\n");
+        System.out.println("List of developers:");
+        System.out.println(service.getOperationOnDB().getListOfDevelopers(2));
+        System.out.println("---\n");
+        System.out.println("List of java developers:");
+        System.out.println(service.getOperationOnDB().getListOfJavaDev());
+        System.out.println("---\n");
+        System.out.println("List of mid developers:");
+        System.out.println(service.getOperationOnDB().getListMidDev());
+        System.out.println("---\n");
+        System.out.println("List of project and count og developers:");
+        System.out.println(service.getOperationOnDB().getListOfProject());
 
-        //System.out.println("commCustomers.insertData(new Company(\"ZF\", \"Lagenhagen\")) = " + commCustomers.insertData(new Customer("ZF", "Lagenhagen")));
-        //System.out.println("commCustomers.updateData(5,new Company(\"ZF DE\", \"Hanover\")) = " + commCustomers.updateData(4, new Customer("ZF DE", "Hanover")));
-        //System.out.println("commCustomers.selectData(5) = " + commCustomers.selectData(5));
-        //System.out.println("commCustomers.delete(4) = " + commCustomers.delete(4));
-        //System.out.println("commCustomers.selectAllData(\"id_customer\") = " + commCustomers.selectAllData("id_customer"));
-
-
-        // -- Here is sum od salary of all dev specific project
-        CommProjectDeveloper commPD = new CommProjectDeveloper(databaseConnector,
-                CommProjectDeveloper.INSERT,CommProjectDeveloper.SELECT,
-                CommProjectDeveloper.SELECT_ALL,CommProjectDeveloper.DELETE,
-                CommProjectDeveloper.UPDATE);
-
-        OperationOnDB op = new OperationOnDB(databaseConnector);
-        op.getSumOfSalary(3);
-        System.out.println("op.getListOfDevelopers(2) = " + op.getListOfDevelopers(2));
 
     }
 }

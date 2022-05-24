@@ -1,19 +1,23 @@
-package hw4.commDB.commSkills;
+package hw4.commandsDB.commands;
 
 import hw4.DatabaseConnector;
-import hw4.commDB.Commands;
+import hw4.commandsDB.entity.Skills;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class CommSkills extends Commands {
+public class CommandsSkills extends Commands {
 
-    public static final String INSERT = "insert into skills (id_developer, java, c_plus_plus, c_sharp, js, levelOfPosition) values  (?,?,?,?,?,?)";
+    public static final String INSERT =
+            "insert into skills (id_developer, java, c_plus_plus, c_sharp, js, levelOfPosition) values  (?,?,?,?,?,?)";
     public static final String SELECT = "select * from skills where id_skills =?";
     public static final String SELECT_ALL = "select * from skills";
     public static final String DELETE = "delete from skills where id_skills = ?";
-    public static final String UPDATE = "update skills set id_developer = ?,java= ?, c_plus_plus =?, c_sharp=?, js=?,levelOfPosition=? where id_skills = ?";
+    public static final String UPDATE =
+            "update skills set id_developer = ?,java= ?, c_plus_plus =?, c_sharp=?, js=?,levelOfPosition=? where id_skills = ?";
 
-    public CommSkills(DatabaseConnector databaseConnector, String insert, String select, String selectAll, String delete, String update) throws SQLException {
+    public CommandsSkills(DatabaseConnector databaseConnector,
+                          String insert, String select, String selectAll, String delete, String update) throws SQLException {
         super(databaseConnector, insert, select, selectAll, delete, update);
     }
 
