@@ -73,3 +73,6 @@ CREATE TABLE company_project (
     FOREIGN KEY (id_company) REFERENCES companies(id_company),
     FOREIGN KEY (id_project) REFERENCES projects(id_project)
 );
+
+alter table skills
+add UNIQUE (id_developer);
