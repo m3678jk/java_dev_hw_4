@@ -14,10 +14,7 @@ primary key (id)
 CREATE TABLE skills(
 id_skills bigint NOT NULL AUTO_INCREMENT,
 id_developer bigint NOT NULL ,
-java bool NOT NULL, 
-c_plus_plus bool NOT NULL, 
-c_sharp bool NOT NULL, 
-js bool NOT NULL, 
+technology varchar(30) NOT NULL,
 levelOfPosition varchar(30) NOT NULL,
 primary key (id_skills),
 FOREIGN KEY (id_developer) REFERENCES developers(id)
@@ -74,5 +71,3 @@ CREATE TABLE company_project (
     FOREIGN KEY (id_project) REFERENCES projects(id_project)
 );
 
-alter table skills
-add UNIQUE (id_developer);

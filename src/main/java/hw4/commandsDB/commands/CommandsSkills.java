@@ -9,12 +9,12 @@ import java.sql.SQLException;
 public class CommandsSkills extends Commands {
 
     public static final String INSERT =
-            "insert into skills (id_developer, java, c_plus_plus, c_sharp, js, levelOfPosition) values  (?,?,?,?,?,?)";
+            "insert into skills (id_developer, technology, levelOfPosition) values  (?,?,?)";
     public static final String SELECT = "select * from skills where id_skills =?";
     public static final String SELECT_ALL = "select * from skills";
     public static final String DELETE = "delete from skills where id_skills = ?";
     public static final String UPDATE =
-            "update skills set id_developer = ?,java= ?, c_plus_plus =?, c_sharp=?, js=?,levelOfPosition=? where id_skills = ?";
+            "update skills set id_developer = ?,technology=?,levelOfPosition=? where id_skills = ?";
 
     public CommandsSkills(DatabaseConnector databaseConnector,
                           String insert, String select, String selectAll, String delete, String update) throws SQLException {
@@ -26,11 +26,8 @@ public class CommandsSkills extends Commands {
         Skills skills = (Skills) object;
         try {
             insertSt.setInt(1, skills.getIdDev());
-            insertSt.setBoolean(2, skills.isHasJava());
-            insertSt.setBoolean(3, skills.isHasCPlusPlus());
-            insertSt.setBoolean(4, skills.isHasCSharp());
-            insertSt.setBoolean(5, skills.isHasJS());
-            insertSt.setString(6, skills.getLevelOfPosition());
+            insertSt.setString(2, skills.getTechnology().name());
+            insertSt.setString(3, skills.getLevelOfPosition());
 
             return insertSt.executeUpdate() == 1;
         } catch (SQLException e) {
@@ -51,10 +48,7 @@ public class CommandsSkills extends Commands {
                 System.out.println("incorrect id");
             }
             return new Skills(resultSet.getInt("id_developer"),
-                    resultSet.getBoolean("java"),
-                    resultSet.getBoolean("c_plus_plus"),
-                    resultSet.getBoolean("c_sharp"),
-                    resultSet.getBoolean("js"),
+                    Skills.Technology.valueOf(resultSet.getString("technology")),
                     resultSet.getString("levelOfPosition"));
         } catch (SQLException e) {
             e.printStackTrace();
@@ -68,10 +62,7 @@ public class CommandsSkills extends Commands {
         if(!selectData(id).equals(Skills.INCORRECT_QUERY)){
             try {
                 updateSt.setInt(1, skills.getIdDev());
-                updateSt.setBoolean(2, skills.isHasJava());
-                updateSt.setBoolean(3, skills.isHasCPlusPlus());
-                updateSt.setBoolean(4, skills.isHasCSharp());
-                updateSt.setBoolean(5, skills.isHasJS());
+                updateSt.setString(2, skills.getTechnology().name());
                 updateSt.setString(6, skills.getLevelOfPosition());
                 updateSt.setInt(7, id);
 

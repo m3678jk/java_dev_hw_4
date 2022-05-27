@@ -1,30 +1,36 @@
 package hw4;
 
+import hw4.commandsDB.entity.Developer;
+import hw4.commandsDB.entity.Skills;
+
 import java.sql.SQLException;
+import java.util.Collections;
+import java.util.Map;
 
 public class App {
     public static void main(String[] args) throws SQLException {
         ServiceDB service = new ServiceDB();
 
+
         //-- All commands on developers table:
 //        System.out.println(service.getCommandsDevelopers().insertData(
-//                new Developer("name1", "secondName2", 30, Sex.MALE, 3000)));
+//                new Developer("name1", "secondName2", 30, Developer.Sex.MALE, 3000)));
 //        System.out.println(service.getCommandsDevelopers().selectData(6));
 //        System.out.println(service.getCommandsDevelopers().selectAllData("id"));
 //        System.out.println(service.getCommandsDevelopers().delete(7));
 //        System.out.println(service.getCommandsDevelopers().updateData(
-//                6, new Developer("ch2", "ch", 36, Sex.MALE, 4000)));
+//                6, new Developer("ch2", "ch", 36, Developer.Sex.MALE, 4000)));
 //          System.out.println(service.getCommandsDevelopers().selectAllData("id"));
 
 
 //        //--All operation on skills table
 //        System.out.println(service.getCommandsSkills().insertData(
-//                new Skills(5, true, true, false, false, "middle")));
+//                new Skills(5, Skills.Technology.C_SHARP, "middle")));
 //        System.out.println(service.getCommandsSkills().selectData(4));
 //        System.out.println(service.getCommandsSkills().selectAllData("id_skills"));
 //        System.out.println(service.getCommandsSkills().delete(5));
 //          System.out.println(service.getCommandsSkills().updateData(4,
-//               new Skills(4, true, true, true, false, "Middle")));
+//               new Skills(4, Skills.Technology.Java, "Middle")));
 
 //        -- All operation with Projects table
 //        System.out.println(service.getCommandsProject().selectAllData("id_project"));
@@ -85,11 +91,13 @@ public class App {
         System.out.println("---\n");
         System.out.println("List of java developers:");
         System.out.println(service.getOperationOnDB().getListOfJavaDev());
+
+
         System.out.println("---\n");
         System.out.println("List of mid developers:");
         System.out.println(service.getOperationOnDB().getListMidDev());
         System.out.println("---\n");
-        System.out.println("List of project and count og developers:");
+        System.out.println("List of project and count of developers:");
         System.out.println(service.getOperationOnDB().getListOfProject());
 
 

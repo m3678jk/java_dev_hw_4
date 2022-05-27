@@ -8,13 +8,19 @@ insert into developers (firstName, secondName, age, sex,salary) values
 ("Mateusz", "Lesinski", 48, "male",5200)
 ;
 
-insert into skills(id_developer, java, c_plus_plus, c_sharp, js, levelOfPosition) values 
-(1, true, false, false, true, "Junior"),
-(3, true, true, true, true, "Senior"),
-(2, false, true, true, false, "Middle"),
-(4, true, false, true, true, "Middle"),
-(5, true, false, true, false, "Middle"),
-(6, true, true, true, true, "Senior")
+insert into skills(id_developer, technology, levelOfPosition) values
+(1, "Java", "Junior"),
+(3, "C_PLUS_PLUS", "Senior"),
+(2, "C_SHARP", "Middle"),
+(4, "JS", "Middle"),
+(5, "C_PLUS_PLUS", "Middle"),
+(6, "Java", "Senior"),
+(1, "JS", "Junior"),
+(3, "Java", "Senior"),
+(2, "C_PLUS_PLUS", "Middle"),
+(3, "JS", "Senior"),
+(4, "Java", "Middle"),
+(6, "C_PLUS_PLUS", "Senior")
 ;
 
 insert into projects (name_of_project, description, start_date) values
@@ -38,30 +44,28 @@ insert into project_developer (id_project, id_developer) values
 ;
 
 
-insert into companies (name_of_company, adress) values
+insert into companies (name_of_company, address) values
 ("Capgemini", "France, Paris"),
 ("BNY Mellon" , "New York"),
 ("Opera", "Wroclaw")
 ;
 
-insert into customers(name_of_customer, adress) values 
+insert into customers(name_of_customer, address) values
 ("Kovolis", "Zleby"),
 ("ZF", "Lagenhagen"),
 ("Clean Logistoc", "Stockach"),
 ("RDW", "Regensbur")
 ;
-
-insert into customer_project values
+insert into customer_project (id_customer, id_project) values
 (3,1),
 (2,2),
 (2,3),
 (3,4)
 ;
 
-insert into company_project values
+insert into company_project (id_company, id_project) values
 (2,1),
 (1,2),
 (3,3),
 (2,4)
 ;
-

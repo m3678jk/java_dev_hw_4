@@ -7,13 +7,18 @@ import lombok.Data;
 @Data
 public class Skills {
     private int idDev;
-    private boolean hasJava;
-    private boolean hasCPlusPlus;
-    private boolean hasCSharp;
-    private boolean hasJS;
+    private Technology technology;
     private String levelOfPosition;
 
     public final static Skills INCORRECT_QUERY = new Skills(
-            0,false,false,false,false,"error");
+            0,Technology.C_SHARP,"error");
 
+    public enum Technology{
+        Java,
+        JS,
+        C_PLUS_PLUS,
+        C_SHARP
+
+
+    }
 }

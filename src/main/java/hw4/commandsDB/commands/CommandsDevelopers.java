@@ -2,7 +2,6 @@ package hw4.commandsDB.commands;
 
 import hw4.DatabaseConnector;
 import hw4.commandsDB.entity.Developer;
-import hw4.commandsDB.entity.Sex;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -50,7 +49,7 @@ public class CommandsDevelopers extends Commands {
             return new Developer(resultSet.getString("firstName"),
                     resultSet.getString("secondName"),
                     resultSet.getInt("age"),
-                    Sex.valueOf(resultSet.getString("sex").toUpperCase(Locale.ROOT)),
+                    Developer.Sex.valueOf(resultSet.getString("sex").toUpperCase(Locale.ROOT)),
                     resultSet.getInt("salary"));
         } catch (SQLException e) {
             e.printStackTrace();

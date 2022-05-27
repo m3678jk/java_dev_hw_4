@@ -15,4 +15,10 @@ public class Developer {
     public static final Developer INCORRECT_QUERY = new Developer("error", "error", 0, Sex.UNKNOWN, 0);
 
 
+    public enum Sex {
+        MALE,
+        FEMALE,
+        UNKNOWN
+
+    }
 }
