@@ -22,6 +22,8 @@ public class ServiceDB {
 
     public ServiceDB() throws SQLException {
         DatabaseConnector databaseConnector = DatabaseConnector.getDatabaseConnector();
+        new DatabaseInitService().initDB(databaseConnector);
+
 
         commandsDevelopers = new CommandsDevelopers(databaseConnector,
                 CommandsDevelopers.INSERT, CommandsDevelopers.SELECT,

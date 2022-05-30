@@ -1,5 +1,7 @@
 package hw4;
 
+import hw4.commandsDB.prefs.Prefs;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -9,9 +11,10 @@ public class DatabaseConnector {
     private Connection connection;
     private DatabaseConnector(){
         try{
-            String dbUrl = "jdbc:mysql://127.0.0.1:3306/home_work_3";
-            String dbUser = "root";
-            String dbPass = "1234";
+            String dbUrl = new Prefs().getString(Prefs.DB_JDBC_CONNECTION_URL);
+            String dbUser = new Prefs().getString(Prefs.DB_JDBC_USER);
+            String dbPass = new Prefs().getString(Prefs.DB_JDBC_PASSWORD);
+
             DatabaseConnector databaseConnector = DatabaseConnector.getDatabaseConnector();
             connection = DriverManager.getConnection(dbUrl,dbUser,dbPass);
         }

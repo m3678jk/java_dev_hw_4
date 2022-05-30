@@ -2,8 +2,6 @@ package hw4.commandsDB;
 
 import hw4.DatabaseConnector;
 import hw4.commandsDB.entity.Developer;
-import lombok.Data;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
